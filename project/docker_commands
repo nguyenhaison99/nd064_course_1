@@ -1,11 +1,58 @@
 ## Docker commands used to build the application 
-# TODO: insert the docker build command
+# DONE: insert the docker build command
+docker build -f Dockerfile . -t techtrends
 
 ## Docker commands used to run the application
-# TODO: insert the docker run command
+# DONE: insert the docker run command
+docker run -d -p 7111:3111 techtrends
+6d75eb11ad9c0a778c1341c60c075fc2a59cc3beafd6c8bd8052606234da1765
 
 ## Docker commands used to get the application logs
-# TODO: insert the docker logs command
+# DONE: insert the docker logs command
+docker logs 6d75eb11ad9c0a778c1341c60c075fc2a59cc3beafd6c8bd8052606234da1765
 
 ## Logs from the container running the TechTrends application
-# TODO: paste logs from the Docker container 
+# DONE: paste logs from the Docker container 
+* Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2023-11-14 11:01:55,798 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2023-11-14 11:01:55,799 - werkzeug - INFO -  * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
+Incoming request: GET http://localhost:7111/
+2023-11-14 11:02:23,828 - app - INFO - Incoming request: GET http://localhost:7111/
+Response: 200 OK - 200
+2023-11-14 11:02:23,847 - app - INFO - Response: 200 OK - 200
+2023-11-14 11:02:23,848 - werkzeug - INFO - 192.168.65.1 - - [14/Nov/2023 11:02:23] "GET / HTTP/1.1" 200 -
+Incoming request: GET http://localhost:7111/healthz
+2023-11-14 11:02:31,103 - app - INFO - Incoming request: GET http://localhost:7111/healthz
+Response: 200 OK - 200
+2023-11-14 11:02:31,103 - app - INFO - Response: 200 OK - 200
+2023-11-14 11:02:31,103 - werkzeug - INFO - 192.168.65.1 - - [14/Nov/2023 11:02:31] "GET /healthz HTTP/1.1" 200 -
+Incoming request: GET http://localhost:7111/
+2023-11-14 11:02:40,182 - app - INFO - Incoming request: GET http://localhost:7111/
+Response: 200 OK - 200
+2023-11-14 11:02:40,184 - app - INFO - Response: 200 OK - 200
+2023-11-14 11:02:40,184 - werkzeug - INFO - 192.168.65.1 - - [14/Nov/2023 11:02:40] "GET / HTTP/1.1" 200 -
+Incoming request: GET http://localhost:7111/static/css/main.css
+2023-11-14 11:02:40,207 - app - INFO - Incoming request: GET http://localhost:7111/static/css/main.css
+Response: 200 OK - 200
+2023-11-14 11:02:40,209 - app - INFO - Response: 200 OK - 200
+2023-11-14 11:02:40,210 - werkzeug - INFO - 192.168.65.1 - - [14/Nov/2023 11:02:40] "GET /static/css/main.css HTTP/1.1" 200 -
+Incoming request: GET http://localhost:7111/favicon.ico
+2023-11-14 11:02:40,298 - app - INFO - Incoming request: GET http://localhost:7111/favicon.ico
+Response: 404 NOT FOUND - 404
+2023-11-14 11:02:40,299 - app - INFO - Response: 404 NOT FOUND - 404
+2023-11-14 11:02:40,299 - werkzeug - INFO - 192.168.65.1 - - [14/Nov/2023 11:02:40] "GET /favicon.ico HTTP/1.1" 404 -
+Incoming request: GET http://localhost:7111/static/css/main.css
+2023-11-14 11:02:51,399 - app - INFO - Incoming request: GET http://localhost:7111/static/css/main.css
+Response: 304 NOT MODIFIED - 304
+2023-11-14 11:02:51,400 - app - INFO - Response: 304 NOT MODIFIED - 304
+2023-11-14 11:02:51,401 - werkzeug - INFO - 192.168.65.1 - - [14/Nov/2023 11:02:51] "GET /static/css/main.css HTTP/1.1" 304 -
+Incoming request: GET http://localhost:7111/healthz
+2023-11-14 11:02:55,575 - app - INFO - Incoming request: GET http://localhost:7111/healthz
+Response: 200 OK - 200
+2023-11-14 11:02:55,575 - app - INFO - Response: 200 OK - 200
+2023-11-14 11:02:55,575 - werkzeug - INFO - 192.168.65.1 - - [14/Nov/2023 11:02:55] "GET /healthz HTTP/1.1" 200 -

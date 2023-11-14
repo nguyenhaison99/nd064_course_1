@@ -1,0 +1,47 @@
+name: TechTrends - Package with Docker
+
+# Define when this workflow will run based on events like pushes and pull requests to the 'main' branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Define the jobs that make up this workflow
+jobs:
+  # Define a job named 'build' for building and pushing the Docker image
+  build:
+    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
+
+    steps:
+      - name: Checkout Code  # Step to check out the code from the repository
+        uses: actions/checkout@v2
+
+      - name: Set up QEMU  # Step to set up QEMU (Quick Emulator) for cross-platform builds
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx  # Step to set up Docker Buildx for multi-platform builds
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub  # Step to log in to DockerHub using secrets
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push Docker Image  # Step to build and push the Docker image
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./project  # Specify the build context directory
+          file: ./project/Dockerfile  # Specify the Dockerfile location
+          platforms: linux/amd64  # Specify the target platform
+          push: true  # Push the image to DockerHub
+          tags: nguyenson99/techtrends:latest  # Define the image tag
+
+      - name: Check Build Result  # Step to check the result of the Docker build
+        if: steps.docker_build.outputs.status != 'success'
+        run: exit 1  # Exit with an error code if the build failed
+
