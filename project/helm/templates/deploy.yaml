@@ -6,19 +6,17 @@ metadata:
     tag: latest
   name: techtrends
   namespace: {{ .Values.namespace.name }}
-  # namespace: sandbox
 spec:
   replicas: {{ .Values.replicaCount }} 
-  # replicas: 1
   selector:
     matchLabels:
       app: techtrends
       tag: latest
   strategy:
-    type: RollingUpdate
     rollingUpdate:
       maxSurge: 25%
       maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -26,39 +24,24 @@ spec:
         tag: latest
     spec:
       containers:
-      # - image: nguyenson99/techtrends:latest
       - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: IfNotPresent
         name: techtrends
         ports:
         - containerPort: {{ .Values.container.port }}
           protocol: {{ .Values.container.protocol }}
-        # - containerPort: 3111
-        #   protocol: TCP
         livenessProbe:
           httpGet:
             path: {{ .Values.livenessProbe.path }}
             port: {{ .Values.container.port }}
-            # path: /healthz
-            # port: 3111
-          initialDelaySeconds: 15
-          periodSeconds: 10
         readinessProbe:
           httpGet:
             path: {{ .Values.readinessProbe.path }}
             port: {{ .Values.container.port }}
-            # path: /healthz
-            # port: 3111
-          initialDelaySeconds: 20
-          periodSeconds: 10
         resources:
           requests:
             memory: {{ .Values.resources.requests.memory }}
             cpu: {{ .Values.resources.requests.cpu }}
-            # memory: "64Mi"
-            # cpu: "250m"
           limits:
             memory: {{ .Values.resources.limits.memory }}
             cpu: {{ .Values.resources.limits.cpu }}
-            # memory: "128Mi"
-            # cpu: "500m"

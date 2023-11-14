@@ -6,16 +6,8 @@ metadata:
     tag: latest
   name: techtrends
   namespace: {{ .Values.namespace.name }}
-  # namespace: sandbox
 spec:
   ports:
-  # - port: 4111
-  #   protocol: TCP
-  #   targetPort: 3111
-  # selector:
-  #   app: techtrends
-  #   tag: latest
-  # type: ClusterIP
   - port: {{ .Values.service.port }}
     protocol: {{ .Values.service.protocol }}
     targetPort: {{ .Values.service.targetPort }}
