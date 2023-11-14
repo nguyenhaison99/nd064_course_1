@@ -41,7 +41,3 @@ jobs:
           push: true  # Push the image to DockerHub
           tags: nguyenson99/techtrends:latest  # Define the image tag
 
-      - name: Check Build Result  # Step to check the result of the Docker build
-        if: steps.docker_build.outputs.status != 'success'
-        run: exit 1  # Exit with an error code if the build failed
-
